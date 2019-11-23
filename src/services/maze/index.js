@@ -37,7 +37,7 @@ export class MazeProvider extends React.Component {
   }
 
   setMaze = (maze) => {
-    this.setMaze({ maze })
+    this.setState({ maze })
   }
 
   useFMaze = (roomId) => {
