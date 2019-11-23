@@ -1,5 +1,6 @@
 import React from "react";
 import { currentUser, createUser, loginUser } from "./routes";
+import Login from "../../components/Login";
 
 const LoginContext = React.createContext({
   currentUser: {},
@@ -11,24 +12,33 @@ export class LoginProvider extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      currentUser: {},
+      currentUser: null,
     }
   }
 
   componentDidMount() {
-    this.currentUserSubscription = currentUser().subscribe(currentUser => {
-      this.setState({ currentUser })
-    })
+    //this.currentUserSubscription = currentUser().subscribe(currentUser => {
+      //this.setState({ currentUser })
+    //})
   }
 
   componentWillUnmount() {
     this.currentUserSubscription && this.currentUserSubscription.unsubscribe()
   }
 
+  login(username, password) {
+    console.log("hello")
+    //loginUser(username, password)
+  }
+
   render() {
     return (
       <LoginContext.Provider value={this.state}>
-        {this.props.children}
+        {this.state.currentUser == null ?
+          <Login loginCb={this.login} />
+          :
+          this.props.children
+        }
       </LoginContext.Provider>
     )
   }
