@@ -64,5 +64,5 @@ export {
     joinRoom,
     updatePlayerPosition,
     getPlayerPositions,
-    getMaze,
+    getMaze
 }

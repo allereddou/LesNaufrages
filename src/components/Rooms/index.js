@@ -1,5 +1,6 @@
 import React from "react";
 import './style.css'
+import {cleanUpGame} from "../../services/firebase/routes";
 
 
 class Rooms extends React.Component {
