@@ -9,46 +9,40 @@ import { LoginConsumer } from "../../services/login";
 
 class Game extends React.Component {
   state = {
-    players: [],
     started: false,
     finished: false,
   }
 
-
-  componentDidMount() {
-    const player = {
-      positionX: 0,
-      positionY: 0,
-    }
-    this.setState({ players: [...this.state.players, player] })
-  }
-
-
   handlePlayer = (way) => {
-    const { players } = this.state
+    const { players } = this.props
     switch (way) {
       case 'moveRight':
-        players[0].positionX++
+        players[this.findRightPlayerIndex(players)].positionX++
         if (players[0].positionX >= this.props.mazeX) {
           this.setState({ finished: true })
         }
         break;
       case 'moveLeft':
-        if (!(players[0].positionX === 0 && players[0].positionY === 0)) {
-          players[0].positionX--
+        if (!(players[this.findRightPlayerIndex(players)].positionX === 0 && players[this.findRightPlayerIndex(players)].positionY === 0)) {
+          players[this.findRightPlayerIndex(players)].positionX--
         }
         break;
       case 'moveTop':
-        players[0].positionY--
+        players[this.findRightPlayerIndex(players)].positionY--
         break;
       case 'moveBottom':
-        players[0].positionY++
+        players[this.findRightPlayerIndex(players)].positionY++
         break;
       default:
         break;
     }
     this.setState({ players })
     updatePlayerPosition(this.props.currentRoom, this.props.currentUser.id, players[0].positionX, players[0].positionY)
+  }
+
+  findRightPlayerIndex(players) {
+    console.log(players)
+    return players.findIndex(player => player.playerId === this.props.currentUser.id)
   }
 
 
@@ -64,13 +58,15 @@ class Game extends React.Component {
   }
 
   render() {
+    const arrayPlayer = []
+    Object.entries(this.props.players).forEach((value, index) => console.log(value, index))
     return (
       <>
         {
           this.props.currentRoom === '' ?
             <Rooms currentRoom={this.props.currentRoom} handleCurrentRoom={this.handleCurrentRoom} />
             :
-            <Labyrinth players={this.state.players} maze={this.props.maze} handlePlayer={this.handlePlayer} />
+            <Labyrinth players={this.props.players} currentPlayerId={this.findRightPlayerIndex(this.props.players)} maze={this.props.maze} handlePlayer={this.handlePlayer} />
         }
       </>
     )

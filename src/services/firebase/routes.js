@@ -24,16 +24,24 @@ function joinRoom(roomId, playerId) {
 }
 
 function updatePlayerPosition(roomId, playerId, positionX, positionY) {
-    console.log(roomId, playerId, positionX, positionY)
     database.ref('/' + roomId + '/players/' + playerId).update({
         positionX,
         positionY
     })
 }
 
+function getPlayerPositions(roomId, setPlayers) {
+    let ref = database.ref('/' + roomId + '/players')
+    const val = ref.on('value', (snapshot) => {
+        setPlayers(snapshot.val())
+    })
+    return val
+}
+
 export {
     createRoom,
     checkIfRoomExists,
     joinRoom,
-    updatePlayerPosition
+    updatePlayerPosition,
+    getPlayerPositions,
 }

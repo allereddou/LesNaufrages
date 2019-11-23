@@ -1,5 +1,5 @@
 import React from "react";
-import { createRoom, joinRoom, checkIfRoomExists } from "../firebase/routes";
+import { getPlayerPositions } from "../firebase/routes";
 
 const RoomContext = React.createContext({
   currentUser: null,
@@ -14,17 +14,17 @@ export class RoomProvider extends React.Component {
     this.state = {
       currentRoom: '',
       useRoom: this.useRoom,
+      players: [],
     }
   }
 
-  componentDidMount() {
-  }
-
-  componentWillUnmount() {
-  }
-
   useRoom = (currentRoom) => {
+    this.currentUserSubscription = getPlayerPositions(currentRoom, this.setPlayers)
     this.setState({ currentRoom })
+  }
+
+  setPlayers = (players) => {
+    this.setState({ players })
   }
 
   render() {
