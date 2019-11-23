@@ -16,15 +16,12 @@ export class MazeProvider extends React.Component {
   }
 
   componentDidMount() {
-    console.log(beginner())
     this.beginnerSubscription = beginner().subscribe(maze => {
-      console.log("hello", maze)
       this.setState({ maze })
     })
   }
 
   componentWillUnmount() {
-    console.log(advanced())
     this.beginnerSubscription && this.beginnerSubscription.unsubscribe()
   }
 

@@ -3,11 +3,14 @@ import React from 'react';
 import Labyrinth from './components/Labyrinth';
 
 import './App.css';
+import { MazeProvider } from './services/maze';
 
 function App() {
   return (
     <div className="App">
-      <Labyrinth />
+      <MazeProvider>
+        <Labyrinth />
+      </MazeProvider>
     </div>
   );
 }
