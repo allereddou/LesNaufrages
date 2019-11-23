@@ -4,7 +4,9 @@ import { createMaze } from "./mazeGenerator";
 
 const MazeContext = React.createContext({
   maze: null,
-  resizeMaze: null
+  resizeMaze: null,
+  mazeX: null,
+  mazeY: null,
 })
 
 export class MazeProvider extends React.Component {
@@ -15,6 +17,8 @@ export class MazeProvider extends React.Component {
     this.state = {
       maze: [],
       resizeMaze: this.resizeMaze,
+      mazeX: 25,
+      maxeY: 25,
     }
   }
 
@@ -27,7 +31,7 @@ export class MazeProvider extends React.Component {
   }
 
   resizeMaze = (x, y) => {
-    this.setState({ maze: createMaze(x, y) })
+    this.setState({ maze: createMaze(x, y), mazeX: x, mazeY: y })
   }
 
   render() {
