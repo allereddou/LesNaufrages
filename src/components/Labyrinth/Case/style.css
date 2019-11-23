@@ -1,6 +1,7 @@
 .case {
-  width: 10px;
-  height: 10px;
+  flex: 1;
+  min-width: 30px;
+  min-height: 30px;
   border: 1px solid white;
 }
 
@@ -18,4 +19,8 @@
 
 .right {
   border-right: 1px solid black;
+}
+
+.player {
+  background-color: red;
 }

@@ -25,9 +25,9 @@ export function createMaze(x, y) {
 
     while (visited < totalCells) {
         let potential = [[currentCell[0] - 1, currentCell[1], 0, 2],      // top
-            [currentCell[0], currentCell[1] + 1, 1, 3],               // right
-            [currentCell[0] + 1, currentCell[1], 2, 0],               // bottom
-            [currentCell[0], currentCell[1] - 1, 3, 1]];              // left
+        [currentCell[0], currentCell[1] + 1, 1, 3],               // right
+        [currentCell[0] + 1, currentCell[1], 2, 0],               // bottom
+        [currentCell[0], currentCell[1] - 1, 3, 1]];              // left
 
         let neighbors = [];
 
@@ -61,9 +61,9 @@ export function createMaze(x, y) {
     }
     let returnValue = [[]];
 
-    for(let i = 0; i < y; i++) {
+    for (let i = 0; i < y; i++) {
         returnValue[i] = [];
-        for(let j = 0; j < x; j++) {
+        for (let j = 0; j < x; j++) {
             let cell = cells[i][j];
             returnValue[i][j] = {
                 'top': cell[0],
@@ -74,10 +74,7 @@ export function createMaze(x, y) {
         }
 
     }
+    returnValue[0][0].left = 1
+    returnValue[x - 1][y - 1].right = 1
     return returnValue;
 }
-//
-//
-// let maze = createMaze(4, 4);
-//
-// console.log(maze);

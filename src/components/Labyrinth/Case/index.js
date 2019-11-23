@@ -5,7 +5,9 @@ import style from "./style.css"
 
 export default class extends React.Component {
   componentDidMount() {
-    document.addEventListener("keydown", this.handleKeyDown);
+    if (this.playerIsHere) {
+      document.addEventListener("keydown", this.handleKeyDown);
+    }
   }
 
   componentWillUnmount() {
@@ -32,31 +34,35 @@ export default class extends React.Component {
   }
 
   moveTop = () => {
-    if (this.props.case.top === 1) {
+    if (this.props.case.top === 1 && this.playerIsHere()) {
       this.props.handlePlayer('moveTop')
     }
   }
 
   moveBottom = () => {
-    if (this.props.case.top === 1) {
+    if (this.props.case.bottom === 1 && this.playerIsHere()) {
       this.props.handlePlayer('moveBottom')
     }
   }
 
   moveLeft = () => {
-    if (this.props.case.top === 1) {
+    if (this.props.case.left === 1 && this.playerIsHere()) {
       this.props.handlePlayer('moveLeft')
     }
   }
 
   moveRight = () => {
-    if (this.props.case.top === 1) {
+    if (this.props.case.right === 1 && this.playerIsHere()) {
       this.props.handlePlayer('moveRight')
     }
   }
 
+  playerIsHere = () => {
+    return this.props.index.toString() === `row:${this.props.players[0].positionY}case:${this.props.players[0].positionX}`
+  }
+
   render() {
-    const { case: { top, right, bottom, left }, players } = this.props
+    const { case: { top, right, bottom, left } } = this.props
     return (
       <div className={classnames(
         'case',
@@ -65,6 +71,7 @@ export default class extends React.Component {
           'bottom': bottom === 0,
           'left': left === 0,
           'right': right === 0,
+          'player': this.playerIsHere(),
         })
       } />
     )

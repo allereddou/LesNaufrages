@@ -1,6 +1,6 @@
 import React from "react";
 import { beginner, advanced } from "./routes";
-import { createMaze } from "./MazeGenerator";
+import { createMaze } from "./mazeGenerator";
 
 const MazeContext = React.createContext({
   maxe: {},
