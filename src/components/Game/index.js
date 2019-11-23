@@ -15,33 +15,33 @@ class Game extends React.Component {
 
   handlePlayer = (way) => {
     const { players } = this.props
+    const arrayPlayer = this.getArrayPlayer(players)
+    const rightIndex = this.findRightPlayerIndex(arrayPlayer)
     switch (way) {
       case 'moveRight':
-        players[this.findRightPlayerIndex(players)].positionX++
-        if (players[0].positionX >= this.props.mazeX) {
+        arrayPlayer[rightIndex].positionX++
+        if (arrayPlayer[0].positionX >= this.props.mazeX) {
           this.setState({ finished: true })
         }
         break;
       case 'moveLeft':
-        if (!(players[this.findRightPlayerIndex(players)].positionX === 0 && players[this.findRightPlayerIndex(players)].positionY === 0)) {
-          players[this.findRightPlayerIndex(players)].positionX--
+        if (!(arrayPlayer[rightIndex].positionX === 0 && arrayPlayer[rightIndex].positionY === 0)) {
+          arrayPlayer[rightIndex].positionX--
         }
         break;
       case 'moveTop':
-        players[this.findRightPlayerIndex(players)].positionY--
+        arrayPlayer[rightIndex].positionY--
         break;
       case 'moveBottom':
-        players[this.findRightPlayerIndex(players)].positionY++
+        arrayPlayer[rightIndex].positionY++
         break;
       default:
         break;
     }
-    this.setState({ players })
-    updatePlayerPosition(this.props.currentRoom, this.props.currentUser.id, players[0].positionX, players[0].positionY)
+    updatePlayerPosition(this.props.currentRoom, this.props.currentUser.id, arrayPlayer[0].positionX, arrayPlayer[0].positionY)
   }
 
   findRightPlayerIndex(players) {
-    console.log(players)
     return players.findIndex(player => player.playerId === this.props.currentUser.id)
   }
 
@@ -57,16 +57,21 @@ class Game extends React.Component {
     }
   }
 
-  render() {
+  getArrayPlayer = () => {
     const arrayPlayer = []
-    Object.entries(this.props.players).forEach((value, index) => console.log(value, index))
+    Object.entries(this.props.players).forEach((value) => arrayPlayer.push({ playerId: value[0], positionX: value[1].positionX, positionY: value[1].positionY }))
+    return arrayPlayer
+  }
+
+  render() {
+    const arrayPlayer = this.getArrayPlayer()
     return (
       <>
         {
           this.props.currentRoom === '' ?
             <Rooms currentRoom={this.props.currentRoom} handleCurrentRoom={this.handleCurrentRoom} />
             :
-            <Labyrinth players={this.props.players} currentPlayerId={this.findRightPlayerIndex(this.props.players)} maze={this.props.maze} handlePlayer={this.handlePlayer} />
+            <Labyrinth players={arrayPlayer} currentPlayerId={this.findRightPlayerIndex(arrayPlayer)} maze={this.props.maze} handlePlayer={this.handlePlayer} />
         }
       </>
     )
