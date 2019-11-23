@@ -1,7 +1,7 @@
 import React from "react";
 import { compose, fromRenderProps } from "recompose";
 import { MazeConsumer } from "../../services/maze";
-import Row from "../Row";
+import Row from "./Row";
 
 import uuid from "uuid/v1";
 

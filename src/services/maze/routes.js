@@ -1,7 +1,6 @@
 import axios from "axios";
-import {Subject, Subscription} from "rxjs";
-
-const defaultRoute = "https://labyrinth-api.herokuapp.com/"
+import { Subject } from "rxjs";
+import defaultRoute from "../defaultRoute";
 
 const beginner = () => {
   const beginnerSubject = new Subject();
