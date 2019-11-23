@@ -38,10 +38,15 @@ function getPlayerPositions(roomId, setPlayers) {
     return val
 }
 
+function cleanUpGame(roomId) {
+    database.ref('/' + roomId).remove();
+}
+
 export {
     createRoom,
     checkIfRoomExists,
     joinRoom,
     updatePlayerPosition,
     getPlayerPositions,
+    cleanUpGame
 }

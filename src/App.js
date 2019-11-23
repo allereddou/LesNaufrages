@@ -13,7 +13,7 @@ function App() {
       <LoginProvider>
         <RoomProvider>
           <MazeProvider>
-            <Game />
+            <Game/>
           </MazeProvider>
         </RoomProvider>
       </LoginProvider>
