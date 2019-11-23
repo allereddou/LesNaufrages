@@ -37,25 +37,25 @@ export default class extends React.Component {
   }
 
   moveTop = () => {
-    if (this.props.case.top === 1 && this.playerIsHere(0)) {
+    if (this.props.case.top === 1 && this.playerIsHere(this.props.currentPlayerId)) {
       this.props.handlePlayer('moveTop')
     }
   }
 
   moveBottom = () => {
-    if (this.props.case.bottom === 1 && this.playerIsHere(0)) {
+    if (this.props.case.bottom === 1 && this.playerIsHere(this.props.currentPlayerId)) {
       this.props.handlePlayer('moveBottom')
     }
   }
 
   moveLeft = () => {
-    if (this.props.case.left === 1 && this.playerIsHere(0)) {
+    if (this.props.case.left === 1 && this.playerIsHere(this.props.currentPlayerId)) {
       this.props.handlePlayer('moveLeft')
     }
   }
 
   moveRight = () => {
-    if (this.props.case.right === 1 && this.playerIsHere(0)) {
+    if (this.props.case.right === 1 && this.playerIsHere(this.props.currentPlayerId)) {
       this.props.handlePlayer('moveRight')
     }
   }
