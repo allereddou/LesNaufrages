@@ -1,5 +1,5 @@
 import React from "react";
-import { compose, fromRenderProps } from "recompose";
+import logo from "../../images/logo.jpg";
 
 export default class extends React.Component {
   state = {
@@ -22,13 +22,15 @@ export default class extends React.Component {
 
   render() {
     return (
-      <div>
+      <>
+        <img src={logo} width="400px" />
+        <h1>The Great Escape</h1>
         <input type="text" value={this.state.username} onChange={this.handleUsernameChange} />
         <input type="password" value={this.state.password} onChange={this.handlePassowrdChange} />
         <button onClick={this.login}>
           Login
         </button>
-      </div>
+      </>
     )
   }
 }
