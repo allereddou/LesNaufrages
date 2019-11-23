@@ -2,6 +2,6 @@ import React from "react";
 
 import style from "./style.css"
 
-export default () => {
-  return <div className="player" />
+export default ({ color }) => {
+  return <div className="player" style={{ backgroundColor: color }} />
 }

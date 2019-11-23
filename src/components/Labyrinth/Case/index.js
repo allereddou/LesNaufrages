@@ -85,7 +85,7 @@ export default class extends React.Component {
           'right': right === 0,
         })
       }>
-        {this.playersHere().map(p => <Player key={uuid()} />)}
+        {this.playersHere().map(p => <Player key={uuid()} color={p.color} />)}
       </div>
     )
   }

@@ -1,16 +1,16 @@
 import database from './firebase'
+import randomHex from 'random-hex'
 
 function check(roomId, resolve) {
     database.ref('/').once('value').then((snapshot) => {
         const data = snapshot.val()
-        console.log('reeee', data[roomId])
         resolve(data[roomId])
     })
 }
 
 function createRoom(roomId, playerId, maze) {
     let players = {}
-    players[playerId] = { positionX: 0, positionY: 0 }
+    players[playerId] = { positionX: 0, positionY: 0, color: randomHex.generate() }
     database.ref('/' + roomId).set({
         maze: maze,
         players
@@ -21,6 +21,7 @@ function joinRoom(roomId, playerId) {
     database.ref('/' + roomId + '/players/' + playerId).set({
         positionX: 0,
         positionY: 0,
+        color: randomHex.generate(),
     })
 }
 

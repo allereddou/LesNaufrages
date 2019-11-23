@@ -63,7 +63,7 @@ class Game extends React.Component {
 
   getArrayPlayer = () => {
     const arrayPlayer = []
-    Object.entries(this.props.players).forEach((value) => arrayPlayer.push({ playerId: value[0], positionX: value[1].positionX, positionY: value[1].positionY }))
+    Object.entries(this.props.players).forEach((value) => arrayPlayer.push({ playerId: value[0], positionX: value[1].positionX, positionY: value[1].positionY, color: value[1].color }))
     console.log(arrayPlayer)
     return arrayPlayer
   }
