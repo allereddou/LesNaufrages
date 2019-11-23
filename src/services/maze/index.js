@@ -3,7 +3,8 @@ import { beginner, advanced } from "./routes";
 import { createMaze } from "./mazeGenerator";
 
 const MazeContext = React.createContext({
-  maxe: {},
+  maze,
+  resizeMaze
 })
 
 export class MazeProvider extends React.Component {
@@ -13,18 +14,20 @@ export class MazeProvider extends React.Component {
     super(props)
     this.state = {
       maze: [],
+      resizeMaze: this.resizeMaze,
     }
   }
 
   componentDidMount() {
-    //this.beginnerSubscription = advanced().subscribe(maze => {
-    //  this.setState({ maze })
-    //})
     this.setState({ maze: createMaze(25, 25) })
   }
 
   componentWillUnmount() {
     this.beginnerSubscription && this.beginnerSubscription.unsubscribe()
+  }
+
+  resizeMaze(x, y) {
+    this.setState({ maze: createMaze(x, y) })
   }
 
   render() {

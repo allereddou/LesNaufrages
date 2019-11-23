@@ -1,6 +1,4 @@
 import React from "react";
-import { compose, fromRenderProps } from "recompose";
-import { MazeConsumer } from "../../services/maze";
 import Row from "./Row";
 
 import style from "./style.css"
@@ -16,6 +14,4 @@ const Labyrinth = ({ maze, handlePlayer, players }) => {
   )
 }
 
-export default compose(
-  fromRenderProps(MazeConsumer, (props) => props)
-)(Labyrinth)
+export default Labyrinth;

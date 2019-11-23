@@ -3,6 +3,7 @@ import Labyrinth from "../Labyrinth";
 import Rooms from "../Rooms";
 import { compose, fromRenderProps } from "recompose";
 import { RoomConsumer } from "../../services/rooms";
+import { MazeConsumer } from "../../services/maze";
 
 class Game extends React.Component {
   state = {
@@ -40,14 +41,18 @@ class Game extends React.Component {
     this.setState({ players })
   }
 
+  handleCurrentRoom(x, y) {
+    this.props.resizeMaze(x, y)
+  }
+
   render() {
     return (
       <>
         {
           this.props.currentRoom === '' ?
-            <Rooms currentRoom={this.props.currentRoom} />
+            <Rooms currentRoom={this.props.currentRoom} handleCurrentRoom={this.props.handleCurrentRoom} />
             :
-            <Labyrinth players={this.state.players} handlePlayer={this.handlePlayer} />
+            <Labyrinth players={this.state.players} maze={this.props.maze} handlePlayer={this.handlePlayer} />
         }
       </>
     )
@@ -56,4 +61,5 @@ class Game extends React.Component {
 
 export default compose(
   fromRenderProps(RoomConsumer, props => props),
+  fromRenderProps(MazeConsumer, (props) => props)
 )(Game)
