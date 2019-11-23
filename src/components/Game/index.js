@@ -41,8 +41,9 @@ class Game extends React.Component {
     this.setState({ players })
   }
 
-  handleCurrentRoom = (x, y) => {
+  handleCurrentRoom = (x, y, name) => {
     this.props.resizeMaze(x, y)
+    this.props.useRoom(name)
   }
 
   render() {

@@ -1,7 +1,8 @@
 import React from "react";
 
 const RoomContext = React.createContext({
-  currentUser: {},
+  currentUser: null,
+  useRoom: null,
 })
 
 export class RoomProvider extends React.Component {
@@ -11,6 +12,7 @@ export class RoomProvider extends React.Component {
     super(props)
     this.state = {
       currentRoom: '',
+      useRoom: this.useRoom,
     }
   }
 
@@ -18,6 +20,10 @@ export class RoomProvider extends React.Component {
   }
 
   componentWillUnmount() {
+  }
+
+  useRoom = (currentRoom) => {
+    this.setState({ currentRoom })
   }
 
   render() {
