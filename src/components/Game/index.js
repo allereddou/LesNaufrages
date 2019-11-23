@@ -47,7 +47,7 @@ class Game extends React.Component {
         break;
     }
     this.setState({ players })
-      updatePlayerPosition('room1', , players[0].positionX, players[0].positionY)
+    updatePlayerPosition('room1', 'player1', players[0].positionX, players[0].positionY)
   }
 
 

@@ -1,11 +1,14 @@
 import React from "react";
 import classnames from "classnames";
+import uuid from "uuid/v1";
+
+import Player from "../Player";
 
 import style from "./style.css"
 
 export default class extends React.Component {
   componentDidMount() {
-    if (this.playerIsHere) {
+    if (this.playerIsHere(0)) {
       document.addEventListener("keydown", this.handleKeyDown);
     }
   }
@@ -34,31 +37,39 @@ export default class extends React.Component {
   }
 
   moveTop = () => {
-    if (this.props.case.top === 1 && this.playerIsHere()) {
+    if (this.props.case.top === 1 && this.playerIsHere(0)) {
       this.props.handlePlayer('moveTop')
     }
   }
 
   moveBottom = () => {
-    if (this.props.case.bottom === 1 && this.playerIsHere()) {
+    if (this.props.case.bottom === 1 && this.playerIsHere(0)) {
       this.props.handlePlayer('moveBottom')
     }
   }
 
   moveLeft = () => {
-    if (this.props.case.left === 1 && this.playerIsHere()) {
+    if (this.props.case.left === 1 && this.playerIsHere(0)) {
       this.props.handlePlayer('moveLeft')
     }
   }
 
   moveRight = () => {
-    if (this.props.case.right === 1 && this.playerIsHere()) {
+    if (this.props.case.right === 1 && this.playerIsHere(0)) {
       this.props.handlePlayer('moveRight')
     }
   }
 
-  playerIsHere = () => {
-    return this.props.index.toString() === `row:${this.props.players[0].positionY}case:${this.props.players[0].positionX}`
+  playerIsHere = (i) => {
+    return this.props.index.toString() === this.getPlayerIndex(i)
+  }
+
+  getPlayerIndex = (i) => {
+    return `row:${this.props.players[i].positionY}case:${this.props.players[i].positionX}`
+  }
+
+  playersHere = () => {
+    return this.props.players.filter(player => this.props.index.toString() === `row:${player.positionY}case:${player.positionX}`)
   }
 
   render() {
@@ -71,9 +82,10 @@ export default class extends React.Component {
           'bottom': bottom === 0,
           'left': left === 0,
           'right': right === 0,
-          'player': this.playerIsHere(),
         })
-      } />
+      }>
+        {this.playersHere().map(p => <Player key={uuid()} />)}
+      </div>
     )
   }
 }

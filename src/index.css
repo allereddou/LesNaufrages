@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+@import url('https://fonts.googleapis.com/css?family=Arizonia&display=swap');
+
+* {
+  font-family: 'Arizonia', cursive;
+  font-size: x-large;
+}
