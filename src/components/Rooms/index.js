@@ -1,9 +1,7 @@
 import React from "react";
-import { compose, fromRenderProps } from "recompose";
-
 class Rooms extends React.Component {
   state = {
-    room: ''
+    room: this.props.currentRoom
   }
 
   handleRoomChange = (event) => {
@@ -26,6 +24,4 @@ class Rooms extends React.Component {
   }
 }
 
-export default compose(
-  fromRenderProps(),
-)(Rooms)
+export default Rooms

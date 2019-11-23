@@ -44,4 +44,3 @@ export class LoginProvider extends React.Component {
 }
 
 export const LoginConsumer = LoginContext.Consumer
-

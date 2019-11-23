@@ -1,7 +1,10 @@
 import React from "react";
 import Labyrinth from "../Labyrinth";
+import Rooms from "../Rooms";
+import { compose, fromRenderProps } from "recompose";
+import { RoomConsumer } from "../../services/rooms";
 
-export default class extends React.Component {
+class Game extends React.Component {
   state = {
     players: []
   }
@@ -38,6 +41,19 @@ export default class extends React.Component {
   }
 
   render() {
-    return <Labyrinth players={this.state.players} handlePlayer={this.handlePlayer} />
+    return (
+      <>
+        {
+          this.props.currentRoom === '' ?
+            <Rooms currentRoom={this.props.currentRoom} />
+            :
+            <Labyrinth players={this.state.players} handlePlayer={this.handlePlayer} />
+        }
+      </>
+    )
   }
 }
+
+export default compose(
+  fromRenderProps(RoomConsumer, props => props),
+)(Game)
