@@ -1,7 +1,16 @@
 import axios from "axios";
 
-const default
+const defaultRoute = "labyrinth-api.herokuapp.com/"
 
-const maze = () => {
-  return axios.get()
+const beginner = () => {
+  return axios.get(`${defaultRoute}/maze/beginner`)
+}
+
+const advanced = () => {
+  return axios.get(`${defaultRoute}/maze/beginner`)
+}
+
+export {
+  beginner,
+  advanced,
 }
