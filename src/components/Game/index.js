@@ -65,6 +65,8 @@ class Game extends React.Component {
 
   render() {
     const arrayPlayer = this.getArrayPlayer()
+    console.log(arrayPlayer)
+    console.log(this.props.currentUser)
     return (
       <>
         {

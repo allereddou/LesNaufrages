@@ -11,15 +11,18 @@ function createRoom(roomId, maze, player1) {
 }
 
 function checkIfRoomExists(roomId) {
-    let ref = database.ref('/' + roomId);
+    let ref = database.ref('/');
     ref.once('value', function (snapshot) {
+        console.log('YO', snapshot.val())
         return snapshot.val()
     });
 }
 
 function joinRoom(roomId, playerId) {
-    database.ref('/' + roomId + '/players/' + playerId).update({
-        position: [0, 0]
+    console.log('JOIN', roomId, playerId)
+    database.ref('/' + roomId + '/players/' + playerId).set({
+        positionX: 0,
+        positionY: 0
     })
 }
 
