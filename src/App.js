@@ -1,17 +1,13 @@
 import React from 'react';
 
-import Case from './components/Case';
+import Labyrinth from './components/Labyrinth';
 
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <body>
-          <Case/>
-        </body>
-      </header>
+      <Labyrinth />
     </div>
   );
 }

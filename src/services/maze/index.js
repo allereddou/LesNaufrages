@@ -1,16 +1,40 @@
-import axios from "axios";
+import React from "react";
+import {beginner, advanced} from "./routes";
 
-const defaultRoute = "labyrinth-api.herokuapp.com/"
+const MazeContext = React.createContext({
+  maxe: {},
+})
 
-const beginner = () => {
-  return axios.get(`${defaultRoute}/maze/beginner`)
+export class MazeProvider extends React.Component {
+  beginnerSubscription
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      maze: {},
+    }
+  }
+
+  componentDidMount() {
+    console.log(beginner())
+    this.beginnerSubscription = beginner().subscribe(maze => {
+      console.log("hello", maze)
+      this.setState({ maze })
+    })
+  }
+
+  componentWillUnmount() {
+    console.log(advanced())
+    this.beginnerSubscription && this.beginnerSubscription.unsubscribe()
+  }
+
+  render() {
+    return (
+      <MazeContext.Provider value={this.state}>
+        {this.props.children}
+      </MazeContext.Provider>
+    )
+  }
 }
 
-const advanced = () => {
-  return axios.get(`${defaultRoute}/maze/beginner`)
-}
-
-export {
-  beginner,
-  advanced,
-}
+export const MazeConsumer = MazeContext.Consumer
