@@ -1,11 +1,13 @@
 import React from "react";
 import { createMaze } from "./mazeGenerator";
+import { getMaze } from "../firebase/routes";
 
 const MazeContext = React.createContext({
   maze: null,
   resizeMaze: null,
   mazeX: null,
   mazeY: null,
+  getMaze: null,
 })
 
 export class MazeProvider extends React.Component {
@@ -16,6 +18,7 @@ export class MazeProvider extends React.Component {
     this.state = {
       maze: [],
       resizeMaze: this.resizeMaze,
+      getMaze: this.getMaze,
       mazeX: 25,
       maxeY: 25,
     }
@@ -31,6 +34,14 @@ export class MazeProvider extends React.Component {
 
   resizeMaze = (x, y) => {
     this.setState({ maze: createMaze(x, y), mazeX: x, mazeY: y })
+  }
+
+  setMaze = (maze) => {
+    this.setMaze({ maze })
+  }
+
+  useFMaze = (maze) => {
+    getMaze(this.setMaze)
   }
 
   render() {

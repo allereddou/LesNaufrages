@@ -38,10 +38,19 @@ function getPlayerPositions(roomId, setPlayers) {
     return val
 }
 
+function getMaze(roomId, setMaze) {
+    let ref = database.ref('/' + roomId + '/maze')
+    const val = ref.on('value', (snapshot) => {
+        setMaze(snapshot.val())
+    })
+    return val
+}
+
 export {
     createRoom,
     checkIfRoomExists,
     joinRoom,
     updatePlayerPosition,
     getPlayerPositions,
+    getMaze,
 }

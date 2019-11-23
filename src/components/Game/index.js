@@ -51,7 +51,7 @@ class Game extends React.Component {
     this.props.useRoom(name)
 
     if (checkIfRoomExists(name)) {
-      joinRoom(name)
+      joinRoom(name, this.props.getMaze())
     } else {
       createRoom(name, this.props.maze, { playerId: this.props.currentUser.id, positionX: 0, positionY: 0 })
     }
