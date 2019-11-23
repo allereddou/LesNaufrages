@@ -2,17 +2,19 @@ import axios from "axios";
 import { Subject } from "rxjs";
 import defaultRoute from "../defaultRoute";
 
+const currentUserSubject = new Subject();
+
 const currentUser = () => {
-  const currentUserSubject = new Subject();
   axios.get(`${defaultRoute}api/users/current`).then((response) => {
     currentUserSubject.next(response.data);
   })
   return currentUserSubject;
 }
 
-const loginUser = () => {
+const loginUser = (username, password) => {
   const loginUserSubject = new Subject();
   axios.post(`${defaultRoute}api/users/signin`).then((reponse) => {
+    console.log("hello")
     loginUserSubject.next(reponse.data);
   })
   return loginUserSubject;
