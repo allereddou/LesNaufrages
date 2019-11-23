@@ -1,38 +1,27 @@
 import database from './firebase'
 
-function createRoom(roomId, maze, player1) {
-    const { positionX, positionY, playerId } = player1
+function check(roomId, resolve) {
+    database.ref('/').once('value').then((snapshot) => {
+        const data = snapshot.val()
+        console.log('reeee',data[roomId])
+        resolve(data[roomId])
+    })
+}
+
+function createRoom(roomId, playerId, maze) {
     let players = {}
-    players[playerId] = { positionX, positionY }
+    players[playerId] = { positionX: 0, positionY: 0 }
     database.ref('/' + roomId).set({
         maze: maze,
         players
     })
 }
 
-function checkIfRoomExists(roomId) {
-    let ref = database.ref('/' + roomId);
-    ref.once('value', function (snapshot) {
-        console.log('YO', Object.values(snapshot.val().players).length)
-        return snapshot.val()
-    });
-}
-
-function joinRoom(roomId, playerId, maze) {
+function joinRoom(roomId, playerId) {
     database.ref('/' + roomId + '/players/' + playerId).set({
         positionX: 0,
-        positionY: 0
-    }, () => {
-        let players = {}
-        console.log('hello in create')
-        players[playerId] = { positionX: 0, positionY: 0 }
-        database.ref('/' + roomId).set({
-            maze: maze,
-            players
-        })
-
+        positionY: 0,
     })
-
 }
 
 function updatePlayerPosition(roomId, playerId, positionX, positionY) {
@@ -59,8 +48,8 @@ function getMaze(roomId, setMaze) {
 }
 
 export {
+    check,
     createRoom,
-    checkIfRoomExists,
     joinRoom,
     updatePlayerPosition,
     getPlayerPositions,

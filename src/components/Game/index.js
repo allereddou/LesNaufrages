@@ -4,7 +4,7 @@ import Rooms from "../Rooms";
 import { compose, fromRenderProps } from "recompose";
 import { RoomConsumer } from "../../services/rooms";
 import { MazeConsumer } from "../../services/maze";
-import { checkIfRoomExists, createRoom, joinRoom, updatePlayerPosition } from "../../services/firebase/routes";
+import { checkIfRoomExists, createRoom, joinRoom, updatePlayerPosition, check } from "../../services/firebase/routes";
 import { LoginConsumer } from "../../services/login";
 
 class Game extends React.Component {
@@ -46,10 +46,21 @@ class Game extends React.Component {
   }
 
 
-  handleCurrentRoom = (x, y, name) => {
+  handleCurrentRoom = async (x, y, name) => {
     this.props.resizeMaze(x, y)
-    joinRoom(name, this.props.currentUser.id, this.props.maze)
-    this.props.useRoom(name)
+    const a = await new Promise((resolve) => {
+      check(name, resolve)
+    })
+    if (a == null) {
+      console.log('create')
+      createRoom(name, this.props.currentUser.id, this.props.maze)
+      this.props.useRoom(name)
+    }
+    else {
+      console.log('join')
+      joinRoom(name, this.props.currentUser.id)
+      this.props.useRoom(name)
+    }
   }
 
   getArrayPlayer = () => {
@@ -61,6 +72,7 @@ class Game extends React.Component {
   render() {
     const arrayPlayer = this.getArrayPlayer()
     console.log(arrayPlayer)
+    console.log(this.props.currentUser)
     return (
       <>
         {
