@@ -21,6 +21,9 @@ class Rooms extends React.Component {
   render() {
     return (
       <div>
+          <h2>
+            THE GREATE ESCAPE ™
+          </h2>
         <p>
           Uncle Bob was thinking about Pepe TheFrog again. Pepe was a selfish ogre with moist thighs and wide moles.
 
@@ -56,8 +59,8 @@ class Rooms extends React.Component {
 
   THE END
         </p>
-        <input type="number" value={this.state.y} onChange={this.handleY} />
-        <input type="text" value={this.state.room} onChange={this.handleRoomChange} />
+        <input type="number" value={this.state.y} onChange={this.handleY} placeholder={"Maze size"}/>
+        <input type="text" value={this.state.room} onChange={this.handleRoomChange} placeholder={"Room name"}/>
         <button onClick={this.joinRoom}>
           Join Room
         </button>

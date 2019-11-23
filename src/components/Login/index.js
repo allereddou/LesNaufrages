@@ -25,7 +25,7 @@ export default class extends React.Component {
       <>
         <img src={logo} width="400px" />
         <h1>The Great Escape</h1>
-        <input type="text" value={this.state.username} onChange={this.handleUsernameChange} />
+        <input type="text" value={this.state.username} onChange={this.handleUsernameChange}/>
         <input type="password" value={this.state.password} onChange={this.handlePassowrdChange} />
         <button onClick={this.login}>
           Login
