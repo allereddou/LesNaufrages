@@ -11,13 +11,10 @@ const currentUser = () => {
   return currentUserSubject;
 }
 
-const loginUser = (username, password) => {
-  const loginUserSubject = new Subject();
-  axios.post(`${defaultRoute}api/users/signin`).then((reponse) => {
-    console.log("hello")
-    loginUserSubject.next(reponse.data);
-  })
-  return loginUserSubject;
+const loginUser = async (username, password) => {
+  const login = await axios.post(`${defaultRoute}api/users/signin`, { email: username, password })
+  axios.defaults.headers.common = { 'Authorization': login.data.token }
+  return currentUser();
 }
 
 const createUser = () => {

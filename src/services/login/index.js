@@ -17,9 +17,9 @@ export class LoginProvider extends React.Component {
   }
 
   componentDidMount() {
-    //this.currentUserSubscription = currentUser().subscribe(currentUser => {
-      //this.setState({ currentUser })
-    //})
+    this.currentUserSubscription = currentUser().subscribe(currentUser => {
+      this.setState({ currentUser })
+    })
   }
 
   componentWillUnmount() {
@@ -27,8 +27,7 @@ export class LoginProvider extends React.Component {
   }
 
   login(username, password) {
-    console.log("hello")
-    //loginUser(username, password)
+    loginUser(username, password)
   }
 
   render() {

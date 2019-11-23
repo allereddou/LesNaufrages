@@ -1,22 +1,34 @@
 import React from "react";
 import { compose, fromRenderProps } from "recompose";
-import { LoginConsumer } from "../../services/login";
 
-class Login extends React.Component {
+export default class extends React.Component {
+  state = {
+    username: '',
+    password: '',
+  }
+
+  handleUsernameChange = (event) => {
+    this.setState({ username: event.target.value });
+  }
+
+  handlePassowrdChange = (event) => {
+    this.setState({ password: event.target.value });
+  }
+
+  login = () => {
+    const { loginCb } = this.props
+    loginCb(this.state.username, this.state.password)
+  }
+
   render() {
-    console.log(this.props)
-    const {loginCb} = this.props
-
     return (
       <div>
-        <input type="text" />
-        <input type="password" />
-        <button onClick={loginCb}/>
+        <input type="text" value={this.state.username} onChange={this.handleUsernameChange} />
+        <input type="password" value={this.state.password} onChange={this.handlePassowrdChange} />
+        <button onClick={this.login}>
+          Login
+        </button>
       </div>
     )
   }
 }
-
-export default compose(
-  fromRenderProps(LoginConsumer, props => props),
-)(Login)
