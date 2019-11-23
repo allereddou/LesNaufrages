@@ -17,12 +17,10 @@ class Game extends React.Component {
     const { players } = this.props
     const arrayPlayer = this.getArrayPlayer(players)
     const rightIndex = this.findRightPlayerIndex(arrayPlayer)
+    console.log(arrayPlayer)
     switch (way) {
       case 'moveRight':
         arrayPlayer[rightIndex].positionX++
-        if (arrayPlayer[0].positionX >= this.props.mazeX) {
-          this.setState({ finished: true })
-        }
         break;
       case 'moveLeft':
         if (!(arrayPlayer[rightIndex].positionX === 0 && arrayPlayer[rightIndex].positionY === 0)) {
@@ -70,8 +68,6 @@ class Game extends React.Component {
 
   render() {
     const arrayPlayer = this.getArrayPlayer()
-    console.log(arrayPlayer)
-    console.log(this.props.currentUser)
     return (
       <>
         {
