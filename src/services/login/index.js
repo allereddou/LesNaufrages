@@ -1,6 +1,7 @@
 import React from "react";
 import { currentUser, createUser, loginUser } from "./routes";
 import Login from "../../components/Login";
+import { cleanUpDatabase } from "../firebase/routes";
 
 const LoginContext = React.createContext({
   currentUser: {},
