@@ -48,13 +48,8 @@ class Game extends React.Component {
 
   handleCurrentRoom = (x, y, name) => {
     this.props.resizeMaze(x, y)
+    joinRoom(name, this.props.currentUser.id, this.props.maze)
     this.props.useRoom(name)
-
-    if (checkIfRoomExists(name)) {
-      joinRoom(name, this.props.getMaze())
-    } else {
-      createRoom(name, this.props.maze, { playerId: this.props.currentUser.id, positionX: 0, positionY: 0 })
-    }
   }
 
   getArrayPlayer = () => {
@@ -66,11 +61,10 @@ class Game extends React.Component {
   render() {
     const arrayPlayer = this.getArrayPlayer()
     console.log(arrayPlayer)
-    console.log(this.props.currentUser)
     return (
       <>
         {
-          this.props.currentRoom === '' ?
+          !this.props.go ?
             <Rooms currentRoom={this.props.currentRoom} handleCurrentRoom={this.handleCurrentRoom} />
             :
             <Labyrinth players={arrayPlayer} currentPlayerId={this.findRightPlayerIndex(arrayPlayer)} maze={this.props.maze} handlePlayer={this.handlePlayer} />

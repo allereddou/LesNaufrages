@@ -65,7 +65,8 @@ export default class extends React.Component {
   }
 
   getPlayerIndex = (i) => {
-    return `row:${this.props.players[i].positionY}case:${this.props.players[i].positionX}`
+    const player = this.props.players[i]
+    return `row:${player && player.positionY}case:${player && player.positionX}`
   }
 
   playersHere = () => {
