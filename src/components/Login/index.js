@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../../images/logo.jpg";
+import './style.css'
 
 export default class extends React.Component {
   state = {
@@ -25,9 +26,9 @@ export default class extends React.Component {
       <>
         <img src={logo} width="400px" />
         <h1>The Great Escape</h1>
-        <input type="text" value={this.state.username} onChange={this.handleUsernameChange} />
+        <input type="text" value={this.state.username} onChange={this.handleUsernameChange}/>
         <input type="password" value={this.state.password} onChange={this.handlePassowrdChange} />
-        <button onClick={this.login}>
+        <button onClick={this.login} className={'login-button'}>
           Login
         </button>
       </>
