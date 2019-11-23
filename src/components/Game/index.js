@@ -4,7 +4,8 @@ import Rooms from "../Rooms";
 import { compose, fromRenderProps } from "recompose";
 import { RoomConsumer } from "../../services/rooms";
 import { MazeConsumer } from "../../services/maze";
-import {checkIfRoomExists, createRoom, joinRoom, updatePlayerPosition} from "../../services/firebase/routes";
+import { checkIfRoomExists, createRoom, joinRoom, updatePlayerPosition } from "../../services/firebase/routes";
+import { LoginConsumer } from "../../services/login";
 
 class Game extends React.Component {
   state = {
@@ -47,7 +48,7 @@ class Game extends React.Component {
         break;
     }
     this.setState({ players })
-    updatePlayerPosition('room1', 'player1', players[0].positionX, players[0].positionY)
+    updatePlayerPosition(this.props.currentRoom, this.props.currentUser.id, players[0].positionX, players[0].positionY)
   }
 
 
@@ -55,11 +56,11 @@ class Game extends React.Component {
     this.props.resizeMaze(x, y)
     this.props.useRoom(name)
 
-      if(checkIfRoomExists(currentRoom)) {
-          joinRoom(currentRoom, )
-      } else {
-          createRoom(currentRoom, 'maze', 'player1')
-      }
+    if (checkIfRoomExists(name)) {
+      joinRoom(name)
+    } else {
+      createRoom(name, this.props.maze, { playerId: this.props.currentUser.id, positionX: 0, positionY: 0 })
+    }
   }
 
   render() {
@@ -78,5 +79,6 @@ class Game extends React.Component {
 
 export default compose(
   fromRenderProps(RoomConsumer, props => props),
-  fromRenderProps(MazeConsumer, (props) => props)
+  fromRenderProps(MazeConsumer, (props) => props),
+  fromRenderProps(LoginConsumer, props => props),
 )(Game)

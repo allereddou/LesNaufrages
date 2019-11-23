@@ -1,11 +1,12 @@
 import database from './firebase'
 
 function createRoom(roomId, maze, player1) {
-    let players = []
-    players.push(player1)
+    const { positionX, positionY, playerId } = player1
+    let players = {}
+    players[playerId] = { positionX, positionY }
     database.ref('/' + roomId).set({
         maze: maze,
-        players: players
+        players
     })
 }
 
@@ -23,9 +24,10 @@ function joinRoom(roomId, playerId) {
 }
 
 function updatePlayerPosition(roomId, playerId, positionX, positionY) {
+    console.log(roomId, playerId, positionX, positionY)
     database.ref('/' + roomId + '/players/' + playerId).update({
-        positionX: positionX,
-        positionY: positionY
+        positionX,
+        positionY
     })
 }
 
