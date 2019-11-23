@@ -11,7 +11,7 @@ export class MazeProvider extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      maze: {},
+      maze: [],
     }
   }
 
