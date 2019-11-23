@@ -16,7 +16,7 @@ export class MazeProvider extends React.Component {
   }
 
   componentDidMount() {
-    this.beginnerSubscription = beginner().subscribe(maze => {
+    this.beginnerSubscription = advanced().subscribe(maze => {
       this.setState({ maze })
     })
   }
