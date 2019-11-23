@@ -4,7 +4,7 @@ import Rooms from "../Rooms";
 import { compose, fromRenderProps } from "recompose";
 import { RoomConsumer } from "../../services/rooms";
 import { MazeConsumer } from "../../services/maze";
-import { checkIfRoomExists, createRoom, joinRoom, updatePlayerPosition, check } from "../../services/firebase/routes";
+import { check, createRoom, joinRoom, updatePlayerPosition, cleanUpDatabase } from "../../services/firebase/routes";
 import { LoginConsumer } from "../../services/login";
 
 class Game extends React.Component {
@@ -52,12 +52,10 @@ class Game extends React.Component {
       check(name, resolve)
     })
     if (a == null) {
-      console.log('create')
       createRoom(name, this.props.currentUser.id, this.props.maze)
       this.props.useRoom(name)
     }
     else {
-      console.log('join')
       joinRoom(name, this.props.currentUser.id)
       this.props.useRoom(name)
     }
