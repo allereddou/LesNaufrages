@@ -4,7 +4,7 @@ import Rooms from "../Rooms";
 import { compose, fromRenderProps } from "recompose";
 import { RoomConsumer } from "../../services/rooms";
 import { MazeConsumer } from "../../services/maze";
-import { checkIfRoomExists, createRoom, joinRoom, updatePlayerPosition } from "../../services/firebase/routes";
+import { checkIfRoomExists, createRoom, joinRoom, updatePlayerPosition, cleanUpDatabase } from "../../services/firebase/routes";
 import { LoginConsumer } from "../../services/login";
 
 class Game extends React.Component {
@@ -42,6 +42,7 @@ class Game extends React.Component {
   }
 
   findRightPlayerIndex(players) {
+      console.log(players);
     return players.findIndex(player => player.playerId === this.props.currentUser.id)
   }
 

@@ -58,11 +58,17 @@ function getMaze(roomId, setMaze) {
     return val
 }
 
+function cleanUpDatabase() {
+    database.ref('/').set({});
+
+}
+
 export {
     createRoom,
     checkIfRoomExists,
     joinRoom,
     updatePlayerPosition,
     getPlayerPositions,
-    getMaze
+    getMaze,
+    cleanUpDatabase
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../../images/logo.jpg";
 import './style.css'
+import {cleanUpDatabase} from "../../services/firebase/routes";
 
 export default class extends React.Component {
   state = {
@@ -17,6 +18,7 @@ export default class extends React.Component {
   }
 
   login = () => {
+      cleanUpDatabase('/')
     const { loginCb } = this.props
     loginCb(this.state.username, this.state.password)
   }
