@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Labyrinth from './components/Labyrinth';
+import Game from './components/Game';
 
 import './App.css';
 import { MazeProvider } from './services/maze';
@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <LoginProvider>
         <MazeProvider>
-          <Labyrinth />
+          <Game />
         </MazeProvider>
       </LoginProvider>
     </div>

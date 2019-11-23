@@ -1,5 +1,5 @@
 import React from "react";
-import {beginner, advanced} from "./routes";
+import { beginner, advanced } from "./routes";
 import { createMaze } from "./MazeGenerator";
 
 const MazeContext = React.createContext({
@@ -20,7 +20,7 @@ export class MazeProvider extends React.Component {
     //this.beginnerSubscription = advanced().subscribe(maze => {
     //  this.setState({ maze })
     //})
-      this.setState({maze: createMaze(25,25)})
+    this.setState({ maze: createMaze(25, 25) })
   }
 
   componentWillUnmount() {

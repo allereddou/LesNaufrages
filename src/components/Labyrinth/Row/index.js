@@ -6,10 +6,10 @@ import style from "./style.css"
 
 import uuid from "uuid/v1";
 
-export default ({ row }) => {
+export default ({ row, handlePlayer, players }) => {
   return (
     <div className={classnames('row')}>
-      {row.map(u => <Case key={uuid()} case={u} />)}
+      {row.map(u => <Case key={uuid()} case={u} handlePlayer={handlePlayer} players={players} />)}
     </div>
   )
 }
