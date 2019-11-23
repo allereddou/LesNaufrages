@@ -8,7 +8,7 @@ import style from "./style.css";
 
 export default class extends React.Component {
   componentDidMount() {
-    if (this.playerIsHere(0)) {
+    if (this.playerIsHere(this.props.currentPlayerId)) {
       document.addEventListener("keydown", this.handleKeyDown);
     }
   }

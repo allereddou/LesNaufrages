@@ -17,6 +17,7 @@ class Game extends React.Component {
     const { players } = this.props
     const arrayPlayer = this.getArrayPlayer(players)
     const rightIndex = this.findRightPlayerIndex(arrayPlayer)
+    console.log(rightIndex, arrayPlayer)
     console.log(arrayPlayer)
     switch (way) {
       case 'moveRight':
@@ -36,7 +37,7 @@ class Game extends React.Component {
       default:
         break;
     }
-    updatePlayerPosition(this.props.currentRoom, this.props.currentUser.id, arrayPlayer[0].positionX, arrayPlayer[0].positionY)
+    updatePlayerPosition(this.props.currentRoom, this.props.currentUser.id, arrayPlayer[rightIndex].positionX, arrayPlayer[rightIndex].positionY)
   }
 
   findRightPlayerIndex(players) {
@@ -63,6 +64,7 @@ class Game extends React.Component {
   getArrayPlayer = () => {
     const arrayPlayer = []
     Object.entries(this.props.players).forEach((value) => arrayPlayer.push({ playerId: value[0], positionX: value[1].positionX, positionY: value[1].positionY }))
+    console.log(arrayPlayer)
     return arrayPlayer
   }
 
