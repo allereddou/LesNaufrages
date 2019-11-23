@@ -7,11 +7,12 @@ export default (props) => {
   const { case: { top, right, bottom, left } } = props
   return (
     <div className={classnames(
+      'case',
       {
-        'top': top === 1,
-        'bottom': bottom === 1,
-        'left': left === 1,
-        'right': right === 1,
+        'top': top === 0,
+        'bottom': bottom === 0,
+        'left': left === 0,
+        'right': right === 0,
       })
     } />
   )

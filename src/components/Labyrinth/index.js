@@ -7,9 +7,9 @@ import uuid from "uuid/v1";
 
 const Labyrinth = ({ maze }) => {
   return (
-    <>
+    <div>
       {maze.map(row => <Row key={uuid()} row={row}/>)}
-    </>
+    </div>
   )
 }
 
