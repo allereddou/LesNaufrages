@@ -5,6 +5,7 @@
   "dependencies": {
     "amazejs": "^1.0.3",
     "axios": "^0.19.0",
+    "firebase": "^7.5.0",
     "classnames": "^2.2.6",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",

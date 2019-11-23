@@ -1,4 +1,4 @@
-function createMaze(x, y) {
+export function createMaze(x, y) {
     let totalCells = x * y;
 
     let cells = [];
@@ -59,10 +59,25 @@ function createMaze(x, y) {
             currentCell = path.pop();
         }
     }
-    return cells;
+    let returnValue = [[]];
+
+    for(let i = 0; i < y; i++) {
+        returnValue[i] = [];
+        for(let j = 0; j < x; j++) {
+            let cell = cells[i][j];
+            returnValue[i][j] = {
+                'top': cell[0],
+                'right': cell[1],
+                'bottom': cell[2],
+                'left': cell[3]
+            }
+        }
+
+    }
+    return returnValue;
 }
-
-
-let maze = createMaze(4, 4);
-
-console.log(maze);
+//
+//
+// let maze = createMaze(4, 4);
+//
+// console.log(maze);

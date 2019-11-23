@@ -1,0 +1,35 @@
+import axios from "axios";
+
+var url = 'https://labyrinth-api.herokuapp.com/';
+
+function sigUp() {
+    axios.post(url + '/api/users/sigup', {
+        params: {
+            "firstName": "string",
+            "lastName": "string",
+            "email": "string",
+            "team": "string",
+            "password": "string",
+            "confirmPassword": "string"
+        }
+    });
+}
+
+function sigIn() {
+    axios.post(url + '/api/users/sigin', {
+        params: {
+            "firstName": "string",
+            "lastName": "string",
+            "email": "string",
+            "team": "string",
+            "password": "string",
+            "confirmPassword": "string"
+        }
+    });
+}
+
+function getCurrentUser() {
+    return axios.get(url + '/api​/users​/current');
+}
+
+

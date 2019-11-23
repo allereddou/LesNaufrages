@@ -1,0 +1,16 @@
+var firebase = require("firebase/app");
+
+
+var database = firebase.database();
+
+function writeUserPosition(gameId, name, position) {
+    firebase.database().ref('game/' + gameId).set({
+        position: position
+    });
+}
+
+var playerPosition = firebase.database().ref('game/' + gameId);
+playerPosition.on('value', function(snapshot) {
+    //updatePlayerPosistion(snapshot.val());
+});
+
