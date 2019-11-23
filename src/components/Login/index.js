@@ -18,7 +18,7 @@ export default class extends React.Component {
   }
 
   login = () => {
-      cleanUpDatabase('/')
+      // cleanUpDatabase('/')
     const { loginCb } = this.props
     loginCb(this.state.username, this.state.password)
   }

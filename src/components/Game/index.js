@@ -42,7 +42,6 @@ class Game extends React.Component {
   }
 
   findRightPlayerIndex(players) {
-      console.log(players);
     return players.findIndex(player => player.playerId === this.props.currentUser.id)
   }
 

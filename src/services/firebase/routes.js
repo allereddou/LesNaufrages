@@ -60,7 +60,6 @@ function getMaze(roomId, setMaze) {
 
 function cleanUpDatabase() {
     database.ref('/').set({});
-
 }
 
 export {
