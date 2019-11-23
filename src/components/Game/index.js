@@ -57,6 +57,7 @@ class Game extends React.Component {
     }
     else {
       joinRoom(name, this.props.currentUser.id)
+      this.props.getMaze(name)
       this.props.useRoom(name)
     }
   }

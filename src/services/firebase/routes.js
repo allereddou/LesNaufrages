@@ -3,7 +3,7 @@ import database from './firebase'
 function check(roomId, resolve) {
     database.ref('/').once('value').then((snapshot) => {
         const data = snapshot.val()
-        console.log('reeee',data[roomId])
+        console.log('reeee', data[roomId])
         resolve(data[roomId])
     })
 }
@@ -41,7 +41,7 @@ function getPlayerPositions(roomId, setPlayers) {
 
 function getMaze(roomId, setMaze) {
     let ref = database.ref('/' + roomId + '/maze')
-    const val = ref.on('value', (snapshot) => {
+    const val = ref.once('value', (snapshot) => {
         setMaze(snapshot.val())
     })
     return val

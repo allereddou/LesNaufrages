@@ -18,7 +18,7 @@ export class MazeProvider extends React.Component {
     this.state = {
       maze: [],
       resizeMaze: this.resizeMaze,
-      getMaze: this.getMaze,
+      getMaze: this.useFMaze,
       mazeX: 25,
       maxeY: 25,
     }
@@ -40,8 +40,8 @@ export class MazeProvider extends React.Component {
     this.setMaze({ maze })
   }
 
-  useFMaze = (maze) => {
-    getMaze(this.setMaze)
+  useFMaze = (roomId) => {
+    getMaze(roomId, this.setMaze)
   }
 
   render() {
