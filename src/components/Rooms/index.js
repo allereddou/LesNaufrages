@@ -19,6 +19,7 @@ class Rooms extends React.Component {
   }
 
   joinRoom = () => {
+    console.log(this.props)
     this.props.handleCurrentRoom(this.state.x, this.state.y)
   }
 

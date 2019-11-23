@@ -41,7 +41,7 @@ class Game extends React.Component {
     this.setState({ players })
   }
 
-  handleCurrentRoom(x, y) {
+  handleCurrentRoom = (x, y) => {
     this.props.resizeMaze(x, y)
   }
 
@@ -50,7 +50,7 @@ class Game extends React.Component {
       <>
         {
           this.props.currentRoom === '' ?
-            <Rooms currentRoom={this.props.currentRoom} handleCurrentRoom={this.props.handleCurrentRoom} />
+            <Rooms currentRoom={this.props.currentRoom} handleCurrentRoom={this.handleCurrentRoom} />
             :
             <Labyrinth players={this.state.players} maze={this.props.maze} handlePlayer={this.handlePlayer} />
         }

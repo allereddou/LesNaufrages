@@ -26,7 +26,7 @@ export class MazeProvider extends React.Component {
     this.beginnerSubscription && this.beginnerSubscription.unsubscribe()
   }
 
-  resizeMaze(x, y) {
+  resizeMaze = (x, y) => {
     this.setState({ maze: createMaze(x, y) })
   }
 
