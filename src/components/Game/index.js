@@ -4,6 +4,7 @@ import Rooms from "../Rooms";
 import { compose, fromRenderProps } from "recompose";
 import { RoomConsumer } from "../../services/rooms";
 import { MazeConsumer } from "../../services/maze";
+import {createRoom, joinRoom, updatePlayerPosition} from "../../services/firebase/routes";
 
 class Game extends React.Component {
   state = {
@@ -18,6 +19,8 @@ class Game extends React.Component {
       positionY: 0,
     }
     this.setState({ players: [...this.state.players, player] })
+      createRoom('room1', 'maze');
+    joinRoom('room1', 'player1')
   }
 
   handlePlayer = (way) => {
@@ -44,6 +47,7 @@ class Game extends React.Component {
         break;
     }
     this.setState({ players })
+      updatePlayerPosition('room1', 'player1', players[0].positionX, players[0].positionY)
   }
 
   handleCurrentRoom = (x, y, name) => {

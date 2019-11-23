@@ -1,4 +1,5 @@
 import React from "react";
+import { createRoom, joinRoom } from "../firebase/firebase";
 
 const RoomContext = React.createContext({
   currentUser: null,
