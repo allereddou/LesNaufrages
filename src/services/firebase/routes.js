@@ -1,19 +1,24 @@
 import database from './firebase'
 
-function createRoom(roomId, maze) {
+function createRoom(roomId, maze, player1) {
+    let players = []
+    players.push(player1)
     database.ref('/' + roomId).set({
         maze: maze,
-        players: []
+        players: players
     })
 }
 
 function checkIfRoomExists(roomId) {
-    return database.collection(roomId).doc();
+    let ref = database.ref('/' + roomId);
+    ref.once('value', function (snapshot) {
+        return snapshot.val()
+    });
 }
 
 function joinRoom(roomId, playerId) {
     database.ref('/' + roomId + '/players/' + playerId).update({
-        position: [0,0]
+        position: [0, 0]
     })
 }
 
