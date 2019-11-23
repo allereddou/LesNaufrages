@@ -7,7 +7,9 @@ import { MazeConsumer } from "../../services/maze";
 
 class Game extends React.Component {
   state = {
-    players: []
+    players: [],
+    started: false,
+    finished: false,
   }
 
   componentDidMount() {
@@ -23,6 +25,9 @@ class Game extends React.Component {
     switch (way) {
       case 'moveRight':
         players[0].positionX++
+        if (players[0].positionX >= this.props.mazeX) {
+          this.setState({ finished: true })
+        }
         break;
       case 'moveLeft':
         if (!(players[0].positionX === 0 && players[0].positionY === 0)) {

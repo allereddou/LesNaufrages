@@ -10,23 +10,17 @@ class Rooms extends React.Component {
     this.setState({ room: event.target.value })
   }
 
-  handleX = (event) => {
-    this.setState({ x: event.target.value })
-  }
-
   handleY = (event) => {
-    this.setState({ y: event.target.value })
+    this.setState({ y: event.target.value, x: event.target.value })
   }
 
   joinRoom = () => {
-    console.log(this.props)
     this.props.handleCurrentRoom(this.state.x, this.state.y, this.state.room)
   }
 
   render() {
     return (
       <div>
-        <input type="number" value={this.state.x} onChange={this.handleX} />
         <input type="number" value={this.state.y} onChange={this.handleY} />
         <input type="text" value={this.state.room} onChange={this.handleRoomChange} />
         <button onClick={this.joinRoom}>
