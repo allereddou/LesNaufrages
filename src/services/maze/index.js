@@ -3,8 +3,8 @@ import { beginner, advanced } from "./routes";
 import { createMaze } from "./mazeGenerator";
 
 const MazeContext = React.createContext({
-  maze,
-  resizeMaze
+  maze: null,
+  resizeMaze: null
 })
 
 export class MazeProvider extends React.Component {
