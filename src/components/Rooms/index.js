@@ -1,4 +1,7 @@
 import React from "react";
+import './style.css'
+
+
 class Rooms extends React.Component {
   state = {
     room: this.props.currentRoom,
@@ -61,9 +64,10 @@ class Rooms extends React.Component {
         </p>
         <input type="number" value={this.state.y} onChange={this.handleY} placeholder={"Maze size"}/>
         <input type="text" value={this.state.room} onChange={this.handleRoomChange} placeholder={"Room name"}/>
-        <button onClick={this.joinRoom}>
+        <button onClick={this.joinRoom} className={'join-button'}>
           Join Room
         </button>
+        <p>To join a room, enter it's name below. If it does not exist, it will be created...</p>
       </div>
     )
   }
