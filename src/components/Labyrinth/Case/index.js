@@ -1,5 +1,6 @@
 import React from "react";
 import classnames from "classnames";
+import uuid from "uuid/v1";
 
 import Player from "../Player";
 
@@ -83,7 +84,7 @@ export default class extends React.Component {
           'right': right === 0,
         })
       }>
-        {this.playersHere().map(p => <Player />)}
+        {this.playersHere().map(p => <Player key={uuid()} />)}
       </div>
     )
   }
