@@ -4,6 +4,8 @@ import uuid from "uuid/v1";
 
 import Player from "../Player";
 
+import style from "./style.css";
+
 export default class extends React.Component {
   componentDidMount() {
     if (this.playerIsHere(0)) {
